@@ -1,0 +1,318 @@
+#:kivy 1.11.1
+#: import FadeTransition kivy.uix.screenmanager.FadeTransition
+#: import SlideTransition kivy.uix.screenmanager.SlideTransition
+#: import C kivy.utils.get_color_from_hex
+
+<GameScreen>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Assets\\22033.jpg'
+
+    FloatLayout:
+        pos: 0,0
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 1
+            pos_hint: {'x': .36, 'y': .36}
+            size_hint: .3, .3
+            spacing: 10
+
+            Button:
+                text: 'START'
+                font_size: 20
+                background_color: C("#32cd32")
+                bold:True
+                font_name:'Verdana'
+                on_press:
+                    root.manager.transition = FadeTransition(duration=1.2)
+                    root.manager.current='diff'
+                    root.playSound()
+
+            Button:
+                text: 'ABOUT US'
+                font_size: 20
+                background_color: C("#32cd32")
+                bold:True
+                font_name:'Verdana'
+                on_press:
+                    root.manager.transition = FadeTransition(duration=1.2)
+                    root.playSound()
+                    root.playSound()
+                    root.manager.transition = FadeTransition(duration=1.2)
+                    root.manager.current='About'
+
+            Button:
+                text: 'EXIT'
+                font_size: 20
+                background_color: C("#32cd32")
+                bold:True
+                font_name:'Verdana'
+                on_press:
+                    root.manager.transition = FadeTransition(duration=1.2)
+                    root.playSound()
+                    quit()
+
+        GridLayout:
+            cols: 1
+            pos_hint: {'x': .3, 'y': .7}
+            size_hint: .4, .4
+
+            Label:
+                id:label1
+                text: "PING PONG KING"
+                bold:True
+                font_name:'Verdana'
+                text_size: self.size
+                color: C("#ff00ff")
+                halign: 'center'
+                valign: 'center'
+                pos:self.pos
+                font_size:36
+
+        GridLayout:
+            cols: 1
+            pos_hint: {'x': .1, 'y': .1}
+            size_hint: .1, .1
+            spacing: 1
+
+            Button:
+                font_size: 20
+                font_name:'Verdana'
+                text:'PLAY'
+                background_color: C("#32cd32")
+                text_size: self.size
+                halign: 'center'
+                valign: 'center'
+                on_press:
+                    root.sound.play()
+                    root.playSound()
+
+            Button:
+                font_size: 20
+                background_color: C("#32cd32")
+                text:'STOP'
+                font_name:'Verdana'
+                text_size: self.size
+                halign: 'center'
+                valign: 'center'
+                on_press:
+                    root.sound.stop()
+                    root.playSound()
+
+<pongBall>:
+    canvas:
+        Color:
+            rgba: 0,1,0,1
+        Ellipse:
+            pos: self.pos
+            size: 50,50
+
+
+<pongPaddle>:
+    canvas:
+        Rectangle:
+            pos: self.pos
+            size: 20,120
+
+<diffLevel>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Assets\\lka.jpg'
+
+    FloatLayout:
+        pos: 0,0
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 1
+            pos_hint: {'x': .36, 'y': .36}
+            size_hint: .3, .3
+            spacing: 10
+
+            Button:
+                text: 'Easy'
+                font_size: 20
+                background_color: C("#ff00ff")
+                bold:True
+                font_name:'Verdana'
+                on_press:
+                    root.press_read(4)
+                    root.manager.transition = FadeTransition(duration=1.2)
+                    root.manager.current='second'
+                    root.playSound()
+
+            Button:
+                text: 'Medium'
+                font_size: 20
+                background_color: C("#ff00ff")
+                bold:True
+                font_name:'Verdana'
+                on_press:
+                    root.press_read(6)
+                    root.manager.transition = FadeTransition(duration=1.2)
+                    root.manager.current='second'
+                    root.playSound()
+
+            Button:
+                text: 'Hard'
+                font_size: 20
+                background_color: C("#ff00ff")
+                bold:True
+                font_name:'Verdana'
+                on_press:
+                    root.press_read(9)
+                    root.manager.transition = FadeTransition(duration=1.2)
+                    root.manager.current='second'
+                    root.playSound()
+
+        GridLayout:
+            cols: 1
+            pos_hint: {'x': .1, 'y': .1}
+            size_hint: .1, .1
+            spacing: 1
+
+            Button:
+                font_size: 20
+                bold: True
+                background_color: C("#ff00ff")
+                text:'Back'
+                font_name:'Verdana'
+                text_size: self.size
+                halign: 'center'
+                valign: 'center'
+                on_press:
+                    root.manager.current='Game'
+                    root.playSound()
+
+        GridLayout:
+            cols: 1
+            pos_hint: {'x': .32, 'y': .53}
+            size_hint: .4, .4
+
+            Label:
+                id:label1
+                color:C("#ff00ff")
+                text: "Select Difficulty Level"
+                bold:True
+                font_name:'Verdana'
+                text_size: self.size
+                halign: 'center'
+                valign: 'center'
+                pos:self.pos
+                font_size:24
+
+<aboutUs>:
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Assets\\lka.jpg'
+
+    Label:
+        text:"\nSAHIL NASARIWALA- 19IT071\n     MIHIR MODI - 19IT068\n\n\n      CHARUSAT UNIVERSITY"
+        font_size: 30
+        font_name:'Verdana'
+        color: C("#ff00ff")
+        bold: True
+        pos_hint: {'x': .35, 'y': .43}
+        size_hint: .3, .3
+
+    FloatLayout:
+        pos: 0,0
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 1
+            pos_hint: {'x': .1, 'y': .1}
+            size_hint: .1, .1
+            spacing: 1
+
+            Button:
+                font_size: 20
+                bold: True
+                background_color: C("#ff00ff")
+                text:'Back'
+                font_name:'Verdana'
+                text_size: self.size
+                halign: 'center'
+                valign: 'center'
+                on_press:
+                    root.manager.current='Game'
+                    root.playSound()
+
+<secondScreen>:
+    ball:pong_ball
+    player1: player_left
+    player2: player_right
+    canvas.before:
+        Rectangle:
+            pos: self.pos
+            size: self.size
+            source: 'Assets\\759503.jpg'
+
+    Label:
+        text: str(root.winner_name)
+        font_size: 55
+        font_name:'Verdana'
+        underline: True
+        color: C("#00ff00")
+        bold: True
+        pos_hint: {'x': .35, 'y': .67}
+        size_hint: .3, .3
+
+    Label:
+        text: str(root.firstPlayer)
+        font_size: 70
+        font_name:'Verdana'
+        color: C("#00ff00")
+        pos_hint: {'x': .1, 'y': .8}
+        size_hint: .3, .3
+
+    Label:
+        text: str(root.secondPlayer)
+        font_size: 70
+        font_name:'Verdana'
+        color: C("#00ff00")
+        pos_hint: {'x': .6, 'y': .8}
+        size_hint: .3, .3
+
+    FloatLayout:
+        pos: 0,0
+        size: root.width, root.height
+
+        GridLayout:
+            cols: 1
+            pos_hint: {'x': .45, 'y': .0}
+            size_hint: .1, .1
+
+            Button:
+                text: 'READY'
+                font_size:20
+                halign: 'center'
+                valign: 'center'
+                font_name:'Verdana'
+                background_color: C("#00ff00")
+                on_press:
+                    root.ready=1
+                    root.playSound()
+
+    pongBall:
+        id:pong_ball
+        center: self.parent.center
+
+    pongPaddle:
+        id: player_left
+        x: root.x
+        background_color: C("#00ff00")
+        y: root.center_y
+
+    pongPaddle:
+        id: player_right
+        x: root.width-20
+        y: root.center_y
+        background_color: C("#00ff00")
